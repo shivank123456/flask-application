@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Task Manager</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<div class="container">
+<h1>Task Manager</h1>
+<form action="{{ url_for('add') }}" method="post">
+<input type="text" name="title" id="title" placeholder="Task title" required>
+<input type="text" name="description" id="description" placeholder="Task description" required>
+<button type="submit"> Add Task</button>
+</form>
+</div>
+
+
+<table style="margin-left:auto;margin-right:auto">
+<ul>
+<tr >
+    <th><span><b>Task ID </b></span></th>
+    <th><span><b>&nbsp Names </b></span></th>
+    <th><span><b>&nbsp Description </b></span></th>
+</tr>
+{% for task in tasks %}
+<li>
+
+<tr>
+    <td> <span>&nbsp {{ task[0] }}</span></td>
+    <td> <span>&nbsp {{ task[1] }}</span></td>
+    <td> <span>&nbsp  {{ task[2] }}</span></td>
+    <td><a class="delete" href="{{ url_for('delete', task_id=task[0]) }}" methods="post"><button class="button-11" type="submit">Delete</button></a></td>
+    {% if task[1] != "" or task[2] != "" %}
+        <td> <a class="delete" href="{{ url_for('edit_page',task_id=task[0],title=task[1],description=task[2]) }}" methods="post"><button class="button-11" type="submit" >Update</button></a></td>
+    {% endif %}
+</tr>
+</li>
+{% endfor %}
+</ul>
+</table>
+</div>
+</body>
+</html><!-- HTML !-->

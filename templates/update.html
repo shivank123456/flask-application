@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Task Manager</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+</head>
+<body>
+<div class="container">
+<h1>Task Manager</h1>
+<form action="{{ url_for('update',task_id=task_id) }}" method="post">
+<input type="text" name="title" id="title" value={{ title }} required>
+<input type="text" name="description" id="description" value={{ description }} required>
+    <br><button type="submit">Update Task</button>
+<a href="{{ url_for('index') }}" methods="post"><button type="submit">back</button></a>
+</form>
+</div>
+</body>
+</html><!-- HTML !-->
